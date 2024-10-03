@@ -1,4 +1,4 @@
-package model.dao;
+package dao;
 
 import java.util.List;
 import model.entities.Seller;

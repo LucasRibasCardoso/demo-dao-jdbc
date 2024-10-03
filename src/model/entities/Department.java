@@ -10,10 +10,21 @@ public class Department implements Serializable {
   private int id;
   private String name;
 
+  public Department() {
+
+  }
 
   public Department(int id, String name) {
     this.id = id;
     this.name = name;
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
   }
 
   public String getName() {
@@ -23,6 +34,7 @@ public class Department implements Serializable {
   public void setName(String name) {
     this.name = name;
   }
+
 
   @Override
   public boolean equals(Object o) {
@@ -45,4 +57,5 @@ public class Department implements Serializable {
   public String toString() {
     return "Department{" + "id=" + id + ", name='" + name + '\'' + '}';
   }
+
 }
