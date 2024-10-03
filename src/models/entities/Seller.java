@@ -14,12 +14,15 @@ public class Seller implements Serializable {
   private Date birthDate;
   private Double salary;
 
-  public Seller(Date birthDate, String email, int id, String name, Double salary) {
-    this.birthDate = birthDate;
-    this.email = email;
-    this.id = id;
-    this.name = name;
+  private Department department;
+
+  public Seller(int id, String name, String email, Date birthDate, Double salary, Department department) {
     this.salary = salary;
+    this.name = name;
+    this.id = id;
+    this.email = email;
+    this.department = department;
+    this.birthDate = birthDate;
   }
 
   public Date getBirthDate() {
@@ -82,7 +85,7 @@ public class Seller implements Serializable {
   @Override
   public String toString() {
     return "Seller{" + "birthDate=" + birthDate + ", id=" + id + ", name='" + name + '\'' + ", email='"
-        + email + '\'' + ", salary=" + salary + '}';
+        + email + '\'' + ", salary=" + salary + ", department=" + department + '}';
   }
 
 }
