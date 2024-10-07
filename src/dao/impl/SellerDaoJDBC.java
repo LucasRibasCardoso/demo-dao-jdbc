@@ -23,6 +23,7 @@ public class SellerDaoJDBC implements SellerDao {
     this.connection = connection;
   }
 
+
   private Seller instantiateSeller(ResultSet resultSet, Department department) throws SQLException {
     Seller seller = new Seller();
     seller.setId(resultSet.getInt("Id"));
@@ -41,6 +42,7 @@ public class SellerDaoJDBC implements SellerDao {
     return department;
   }
 
+
   @Override
   public void deleteById(int id) {
     PreparedStatement preparedStatement = null;
@@ -48,7 +50,12 @@ public class SellerDaoJDBC implements SellerDao {
     try {
       preparedStatement = connection.prepareStatement("DELETE FROM seller WHERE seller.Id = ? ");
       preparedStatement.setInt(1, id);
-      preparedStatement.execute();
+
+      int rowsAffected = preparedStatement.executeUpdate();
+
+      if (rowsAffected != 1){
+        throw new DbException("Unexpected error! No seller deleted!");
+      }
     }
     catch (SQLException e) {
       throw new DbException(e.getMessage());

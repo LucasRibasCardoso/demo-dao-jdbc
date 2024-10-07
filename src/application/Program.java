@@ -4,11 +4,14 @@ import dao.DaoFactory;
 import dao.SellerDao;
 import java.sql.SQLOutput;
 import java.util.Date;
+import java.util.Scanner;
 import model.entities.Department;
 import model.entities.Seller;
 
 public class Program {
   public static void main(String[] args) {
+
+    Scanner sc = new Scanner(System.in);
 
     SellerDao sellerDao = DaoFactory.createSellerDao();
 
@@ -18,8 +21,11 @@ public class Program {
     System.out.println();
 
     System.out.println("------- TEST 2: seller deleteById -------");
-    sellerDao.deleteById(9);
-    System.out.println("deleted!");
+    System.out.print("Enter id for delete test: ");
+    int id = sc.nextInt();
+    sellerDao.deleteById(id);
+    System.out.println("Delete completed");
+
 
     System.out.println();
 
@@ -39,7 +45,7 @@ public class Program {
     System.out.println("inserted!");
 
     System.out.println("------ TEST 6: seller update -------");
-    seller = sellerDao.findById(3);
+    seller = sellerDao.findById(15);
     seller.setName("Gabriel Toledo");
     sellerDao.update(seller);
     System.out.println("updated!");
