@@ -23,7 +23,6 @@ public class SellerDaoJDBC implements SellerDao {
     this.connection = connection;
   }
 
-
   private Seller instantiateSeller(ResultSet resultSet, Department department) throws SQLException {
     Seller seller = new Seller();
     seller.setId(resultSet.getInt("Id"));
@@ -35,14 +34,6 @@ public class SellerDaoJDBC implements SellerDao {
     return seller;
   }
 
-  private Department instantiateDepartment(ResultSet resultSet) throws SQLException {
-    Department department = new Department();
-    department.setId(resultSet.getInt("DepartmentID"));
-    department.setName(resultSet.getString("DepartmentName"));
-    return department;
-  }
-
-
   @Override
   public void deleteById(int id) {
     PreparedStatement preparedStatement = null;
@@ -53,7 +44,7 @@ public class SellerDaoJDBC implements SellerDao {
 
       int rowsAffected = preparedStatement.executeUpdate();
 
-      if (rowsAffected != 1){
+      if (rowsAffected == 0){
         throw new DbException("Unexpected error! No seller deleted!");
       }
     }
@@ -83,7 +74,7 @@ public class SellerDaoJDBC implements SellerDao {
         Department dep = departmentMap.get(resultSet.getInt("DepartmentId"));
 
         if (dep == null) {
-          dep = instantiateDepartment(resultSet);
+          dep =  DepartmentDaoJDBC.instantiateDepartment(resultSet);
           departmentMap.put(resultSet.getInt("DepartmentId"), dep);
         }
         Seller seller = instantiateSeller(resultSet, dep);
@@ -109,7 +100,7 @@ public class SellerDaoJDBC implements SellerDao {
       resultSet = preparedStatement.executeQuery();
 
       if (resultSet.next()) {
-        Department department = instantiateDepartment(resultSet);
+        Department department = DepartmentDaoJDBC.instantiateDepartment(resultSet);
         Seller seller = instantiateSeller(resultSet, department);
         return seller;
       }
@@ -143,7 +134,7 @@ public class SellerDaoJDBC implements SellerDao {
         Department dep = departmentMap.get(resultSet.getInt("DepartmentId"));
 
         if (dep == null) {
-          dep = instantiateDepartment(resultSet);
+          dep = DepartmentDaoJDBC.instantiateDepartment(resultSet);
           departmentMap.put(resultSet.getInt("DepartmentId"), dep);
         }
         Seller seller = instantiateSeller(resultSet, dep);

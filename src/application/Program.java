@@ -1,22 +1,24 @@
 package application;
 
 import dao.DaoFactory;
+import dao.DepartmentDao;
 import dao.SellerDao;
-import java.sql.SQLOutput;
 import java.util.Date;
 import java.util.Scanner;
 import model.entities.Department;
 import model.entities.Seller;
 
 public class Program {
+
   public static void main(String[] args) {
 
     Scanner sc = new Scanner(System.in);
 
     SellerDao sellerDao = DaoFactory.createSellerDao();
+    DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
 
     System.out.println("------- TEST 1: seller findById -------");
-    System.out.println(sellerDao.findById(8));
+    System.out.println(sellerDao.findById(15));
 
     System.out.println();
 
@@ -26,17 +28,20 @@ public class Program {
     sellerDao.deleteById(id);
     System.out.println("Delete completed");
 
-
     System.out.println();
 
     System.out.println("------- TEST 3: seller findAll -------");
-    sellerDao.findAll().forEach(System.out::println);
+    sellerDao.findAll()
+        .forEach(System.out::println);
 
     System.out.println();
 
     System.out.println("------- TEST 4: seller findByDepartment -------");
     Department department = new Department(4, null);
-    sellerDao.findByDepartment(department).forEach(System.out::println);
+    sellerDao.findByDepartment(department)
+        .forEach(System.out::println);
+
+    System.out.println();
 
     System.out.println("------- TEST 5: seller insert -------");
     Department department1 = new Department(6, null);
@@ -44,10 +49,14 @@ public class Program {
     sellerDao.insert(seller);
     System.out.println("inserted!");
 
+    System.out.println();
+
     System.out.println("------ TEST 6: seller update -------");
-    seller = sellerDao.findById(15);
-    seller.setName("Gabriel Toledo");
+    seller = sellerDao.findById(10);
+    seller.setName("Gabriel Fallen");
     sellerDao.update(seller);
     System.out.println("updated!");
+
+    System.out.println();
   }
 }
