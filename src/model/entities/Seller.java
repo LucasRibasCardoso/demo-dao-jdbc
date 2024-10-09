@@ -12,43 +12,32 @@ public class Seller implements Serializable {
   private String name;
   private String email;
   private Date birthDate;
-  private Double salary;
-
+  private Double baseSalary;
   private Department department;
 
-  public Seller() {
-  }
-
-  public Seller(Integer id, String name, String email, Date birthDate, Double salary, Department department) {
-    this.salary = salary;
-    this.name = name;
+  // Construtor completo
+  public Seller(
+      Integer id,
+      String name,
+      String email,
+      Date birthDate,
+      Double baseSalary,
+      Department department
+  ) {
     this.id = id;
+    this.name = name;
     this.email = email;
+    this.birthDate = birthDate;
+    this.baseSalary = baseSalary;
     this.department = department;
-    this.birthDate = birthDate;
   }
 
-  public Date getBirthDate() {
-    return birthDate;
-  }
-
-  public void setBirthDate(Date birthDate) {
-    this.birthDate = birthDate;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-  public int getId() {
+  // Getters para todos os atributos
+  public Integer getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(Integer id) {
     this.id = id;
   }
 
@@ -56,26 +45,44 @@ public class Seller implements Serializable {
     return name;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public String getEmail() {
+    return email;
   }
 
-  public Double getSalary() {
-    return salary;
+  public Date getBirthDate() {
+    return birthDate;
   }
 
-  public void setSalary(Double salary) {
-    this.salary = salary;
+  public Double getBaseSalary() {
+    return baseSalary;
   }
 
   public Department getDepartment() {
     return department;
   }
 
+  // Setters para atributos modificáveis
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public void setBirthDate(Date birthDate) {
+    this.birthDate = birthDate;
+  }
+
+  public void setBaseSalary(Double baseSalary) {
+    this.baseSalary = baseSalary;
+  }
+
   public void setDepartment(Department department) {
     this.department = department;
   }
 
+  // Métodos sobrescritos
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -96,7 +103,7 @@ public class Seller implements Serializable {
   @Override
   public String toString() {
     return "Seller{" + "birthDate=" + birthDate + ", id=" + id + ", name='" + name + '\'' + ", email='"
-        + email + '\'' + ", salary=" + salary + ", department=" + department + '}';
+        + email + '\'' + ", salary=" + baseSalary + ", department=" + department + '}';
   }
 
 }

@@ -10,15 +10,13 @@ public class Department implements Serializable {
   private Integer id;
   private String name;
 
-  public Department() {
-
-  }
-
+  // Construtores
   public Department(Integer id, String name) {
     this.id = id;
     this.name = name;
   }
 
+  // Getters e Setters
   public Integer getId() {
     return id;
   }
@@ -35,7 +33,7 @@ public class Department implements Serializable {
     this.name = name;
   }
 
-
+  // Métodos sobrescritos
   @Override
   public boolean equals(Object o) {
     if (this == o) {
